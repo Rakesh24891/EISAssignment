@@ -3,8 +3,7 @@ Calling API through HTTP request (GET)to get real time data -  12/07/2019,
 --------------------------------------------------------------------------------------
 Installed OracleDB and JAVA 7 -16/07/2019
 -------------------------------------------------------------------------------------
-DB Schema-STATIONS
-
+DB Schema-STATIONS 
  CREATE TABLE "SYSTEM"."STATIONS" 
    (	"STATIONNUMBER" NUMBER(*,0) NOT NULL ENABLE, 
 	"NAME" VARCHAR2(256 BYTE), 
@@ -19,4 +18,6 @@ DB Schema-STATIONS
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
----------------------------------------------------------------------------------------
+  
+  21/07/2019
+  ---------------------------------------------------------------------------------------
