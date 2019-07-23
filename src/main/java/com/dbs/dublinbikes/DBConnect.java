@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DBConnect {
 	
-	public  void insertRecord(String number,String name,String lat,String lng,String bikeStands,String availableBikestands,String availableBikes){
+	public  void insertRecord(String number,String name,String lat,String lng,String bikeStands,String availableBikestands,String availableBikes,double distance){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
@@ -23,7 +23,7 @@ public class DBConnect {
 			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLDB","SYSTEM","root");
 			
 			//Prepared statement to insert record into table
-			pstmt=con.prepareStatement("INSERT INTO STATIONS (STATIONNUMBER,NAME,LATITUDE,LONGITUDE,BIKESTANDS,AVAILABLEBIKESTANDS,AVAILABLEBIKES) values(?,?,?,?,?,?,?)");
+			pstmt=con.prepareStatement("INSERT INTO STATIONS (STATIONNUMBER,NAME,LATITUDE,LONGITUDE,BIKESTANDS,AVAILABLEBIKESTANDS,AVAILABLEBIKES,DISTANCE) values(?,?,?,?,?,?,?,?)");
 			
 			//Set parameters
 			int stationNumber=Integer.parseInt(number);
@@ -34,6 +34,7 @@ public class DBConnect {
 			pstmt.setString(5, bikeStands);
 			pstmt.setString(6, availableBikestands);
 			pstmt.setString(7, availableBikes);
+			pstmt.setDouble(8, distance);
 			System.out.println("Inside DBConnection insertRecord()-->2");
 
 			//Execute Query

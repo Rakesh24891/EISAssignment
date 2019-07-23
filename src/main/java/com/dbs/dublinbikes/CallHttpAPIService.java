@@ -13,9 +13,9 @@ import org.json.JSONArray;
 
 public class CallHttpAPIService {
 	
-	public String getBikeDeatils(){
+	public JSONArray getBikeDeatils(String latitude,String longitude){
 		String output;
-
+		JSONArray data=null;
 		try {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -36,8 +36,8 @@ public class CallHttpAPIService {
 
 			while ((output = br.readLine()) != null) {
 				System.out.println("Response from JSON::"+output);
-				JSONArray data=new JSONArray(output);
-				System.out.println(data.getJSONObject(0));
+				data=new JSONArray(output);
+				System.out.println(data);
 			}
 
 			httpClient.getConnectionManager().shutdown();
@@ -48,7 +48,7 @@ public class CallHttpAPIService {
 			output="Exception";
 		}
 
-		return output;
+		return data;
 
 	}
 }
