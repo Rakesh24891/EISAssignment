@@ -26,14 +26,13 @@ public class DBConnect {
 			
 			System.out.println("Inside DBConnection insertRecord()-->1");
 			
-			//Load the Oracle driver class implictly
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//Class.forName("com.mysql.jdbc.Driver");  
 			
 			//Creating the connection object
 			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLDB","SYSTEM","root");
 			
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/TestURL","root","root");
+
 			
 			//Prepared statement to insert record into table
 			pstmt=con.prepareStatement("INSERT INTO STATIONS (STATIONNUMBER,NAME,LATITUDE,LONGITUDE,BIKESTANDS,AVAILABLEBIKESTANDS,AVAILABLEBIKES,DISTANCE) values(?,?,?,?,?,?,?,?)");
@@ -72,6 +71,43 @@ public class DBConnect {
 
 	}
 	
+	public void deleteDBRecodrs(){
+		Statement stmt=null;
+		Connection con=null;
+		
+		System.out.println("Inside DBConnection deleteDBRecodrs()-->1");
+		try{
+		//Load the Oracle driver class implictly
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		//Class.forName("com.mysql.jdbc.Driver");  
+		
+		//Creating the connection object
+		con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLDB","SYSTEM","root");
+		
+		System.out.println("Inside DBConnection deleteDBRecodrs()-->2");
+		//Delete records if any
+		//stmt=con.createStatement();
+		//Creating the Statement
+	      stmt = con.createStatement();
+	      //Query to delete all records in a table
+	      String query = "Truncate table STATIONS";
+	      //Executing the query
+	      stmt.executeUpdate(query);
+	      System.out.println("Table truncated....");
+		}
+		catch(Exception ex){
+			System.out.println("Exception in DBConnection delete Record()!!");
+			ex.printStackTrace();
+		}finally{
+			if(con!=null){
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	public  List<User> getStationData(){
 		Connection con=null;
